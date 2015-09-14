@@ -1,0 +1,23 @@
+application: habitat-api
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+#endpoints handler
+- url: /_ah/spi/.*
+  script: main.application
+
+- url: .*
+  script: main.app
+
+libraries:
+- name: jinja2
+  version: "latest"
+
+- name: webapp2
+  version: "latest"
+
+- name: endpoints
+  version: "latest"
