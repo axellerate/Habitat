@@ -13,7 +13,7 @@ from protorpc import message_types
 from protorpc import remote
 
 #import Datastore models
-import models
+from models import *
 
 '''
 	Users API
@@ -36,5 +36,7 @@ class UsersApi(remote.Service):
                         http_method = 'POST')
     def create(self, request):
         return Response(message = "User created successfully", success = True)
+
+
 
 application = endpoints.api_server([UsersApi,])
