@@ -15,6 +15,31 @@ class Users(Base):
 		Contains some user information.
 	'''
 
+	user_id = ndb.StringProperty(required = True)
+	cars = ndb.KeyProperty(repeated = True, kind = "Cars")
+	alternate_transport = ndb.KeyProperty(repeated = True, kind = "AlternateTransport")
+	city = ndb.StringProperty()
+
+	@classmethod
+	def save(cls, user_id, car_id, alternate_transport, city, electricity, gas, water):
+		'''
+			Saves a user entity.
+		'''
+		car = Cars.save(int(car_id))
+		transport_keys = []
+		for i in alternate_transport.split(','):
+			t = AlternateTransport.query(AlternateTransport.transport_type == i).get()
+			transport_keys.append(t.key)
+		user = Users()
+		user.user_id = user_id
+		user.cars = [car]
+		user.alternate_transport = transport_keys
+		user.city = city
+		user.put()
+
+		Electricity(user = user.key, bill = electricity).put()
+		Water(user = user.key, bill = water).put()
+		Gas(user = user.key, bill = gas).put()
 
 class Cars(Base):
 	'''
@@ -29,13 +54,13 @@ class Cars(Base):
 
 
 	@classmethod
-	def processor(cls, car_id):
+	def save(cls, car_id):
 		'''
 			Accepts a car ID. If the car doesn't exist,
 			fetch the data and save the new car.
 		'''
 
-		if not cls.query(cls.car_id == car_id).count() > 0:
+		if not cls.query(cls.car_id == int(car_id)).count() > 0:
 			url = "http://fueleconomy.gov/ws/rest/vehicle/%s" %str(car_id)
 			xml = urllib2.urlopen(url).read()
 
@@ -57,7 +82,7 @@ class Cars(Base):
 
 			emissions_per_km = emissions_per_mile / 1.6
 
-			cls(car_id = int(car_id), make = make, model = model, 
+			return cls(car_id = int(car_id), make = make, model = model, 
 				year = int(year), emissions_per_km = emissions_per_km).put()
 
 
@@ -72,14 +97,6 @@ class AlternateTransport(Base):
 	emissions_per_km = ndb.FloatProperty(required = True)
 
 
-class TransportMethods(Base):
-	'''
-		Stores the possible methods of transport.
-		Car, Public Transit, Biking and Walking
-	'''
-	method = ndb.StringProperty(required = True)
-
-
 class Distance(Base):
 	'''
 		Stores distances from when a user starts to 
@@ -88,7 +105,7 @@ class Distance(Base):
 
 	user = ndb.KeyProperty(kind = Users)
 	distance = ndb.FloatProperty(required = True)
-	transport_method = ndb.KeyProperty(kind = TransportMethods)
+	transport_method = ndb.KeyProperty(kind = AlternateTransport)
 
 
 class Electricity(Base):
@@ -98,7 +115,7 @@ class Electricity(Base):
 
 	user = ndb.KeyProperty(kind = Users)
 	bill = ndb.FloatProperty(required = True)
-	cycle_in_days = ndb.IntegerProperty(required = True)
+	cycle_in_days = ndb.IntegerProperty(default = 0)
 
 
 class Gas(Base):
@@ -108,7 +125,7 @@ class Gas(Base):
 
 	user = ndb.KeyProperty(kind = Users)
 	bill = ndb.FloatProperty(required = True)
-	cycle_in_days = ndb.IntegerProperty(required = True)
+	cycle_in_days = ndb.IntegerProperty(default = 0)
 
 
 class Water(Base):
@@ -118,4 +135,4 @@ class Water(Base):
 
 	user = ndb.KeyProperty(kind = Users)
 	bill = ndb.FloatProperty(required = True)
-	cycle_in_days = ndb.IntegerProperty(required = True)
+	cycle_in_days = ndb.IntegerProperty(default = 0)
