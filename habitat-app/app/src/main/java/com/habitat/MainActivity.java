@@ -12,56 +12,56 @@
  * limitations under the License.
  */
 
-package com.habitat;
+        package com.habitat;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.CommonStatusCodes;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
-import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Scope;
-import com.google.android.gms.plus.People.LoadPeopleResult;
-import com.google.android.gms.plus.Plus;
-import com.google.android.gms.plus.model.people.Person;
-import com.google.android.gms.plus.model.people.PersonBuffer;
+        import com.google.android.gms.common.ConnectionResult;
+        import com.google.android.gms.common.GooglePlayServicesUtil;
+        import com.google.android.gms.common.SignInButton;
+        import com.google.android.gms.common.api.CommonStatusCodes;
+        import com.google.android.gms.common.api.GoogleApiClient;
+        import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+        import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+        import com.google.android.gms.common.api.ResultCallback;
+        import com.google.android.gms.common.api.Scope;
+        import com.google.android.gms.plus.People.LoadPeopleResult;
+        import com.google.android.gms.plus.Plus;
+        import com.google.android.gms.plus.model.people.Person;
+        import com.google.android.gms.plus.model.people.PersonBuffer;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.PendingIntent;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.IntentSender.SendIntentException;
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+        import android.app.AlertDialog;
+        import android.app.Dialog;
+        import android.app.PendingIntent;
+        import android.content.DialogInterface;
+        import android.content.Intent;
+        import android.content.IntentSender.SendIntentException;
+        import android.os.Bundle;
+        import android.support.v4.app.FragmentActivity;
+        import android.util.Log;
+        import android.view.View;
+        import android.widget.ArrayAdapter;
+        import android.widget.Button;
+        import android.widget.CheckBox;
+        import android.widget.CompoundButton;
+        import android.widget.ListView;
+        import android.widget.TextView;
+        import android.widget.Toast;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
+        import org.apache.http.HttpResponse;
+        import org.apache.http.NameValuePair;
+        import org.apache.http.client.ClientProtocolException;
+        import org.apache.http.client.HttpClient;
+        import org.apache.http.client.entity.UrlEncodedFormEntity;
+        import org.apache.http.client.methods.HttpGet;
+        import org.apache.http.client.methods.HttpPost;
+        import org.apache.http.impl.client.DefaultHttpClient;
+        import org.apache.http.message.BasicNameValuePair;
+        import org.apache.http.util.EntityUtils;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+        import java.io.IOException;
+        import java.util.ArrayList;
+        import java.util.HashSet;
+        import java.util.List;
+        import java.util.Set;
 
 /**
  * Android Google+ Quickstart activity.
@@ -157,13 +157,11 @@ public class MainActivity extends FragmentActivity implements
 
         mSignInButton = (SignInButton) findViewById(com.habitat.R.id.sign_in_button);
         mSignOutButton = (Button) findViewById(com.habitat.R.id.sign_out_button);
-        mRevokeButton = (Button) findViewById(com.habitat.R.id.revoke_access_button);
         mStatus = (TextView) findViewById(com.habitat.R.id.sign_in_status);
 
         // Button listeners
         mSignInButton.setOnClickListener(this);
         mSignOutButton.setOnClickListener(this);
-        mRevokeButton.setOnClickListener(this);
 
 
         if (savedInstanceState != null) {
@@ -234,18 +232,6 @@ public class MainActivity extends FragmentActivity implements
                     }
                     onSignedOut();
                     break;
-                case com.habitat.R.id.revoke_access_button:
-                    // After we revoke permissions for the user with a GoogleApiClient
-                    // instance, we must discard it and create a new one.
-                    Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
-                    // Our sample has caches no user data from Google+, however we
-                    // would normally register a callback on revokeAccessAndDisconnect
-                    // to delete user data so that we comply with Google developer
-                    // policies.
-                    Plus.AccountApi.revokeAccessAndDisconnect(mGoogleApiClient);
-                    mGoogleApiClient = buildGoogleApiClient();
-                    mGoogleApiClient.connect();
-                    break;
             }
         }
     }
@@ -264,10 +250,7 @@ public class MainActivity extends FragmentActivity implements
         // Update the user interface to reflect that the user is signed in.
         mSignInButton.setEnabled(false);
         mSignOutButton.setEnabled(true);
-        mRevokeButton.setEnabled(true);
 
-        // Hide the sign-in options, they no longer apply
-        findViewById(com.habitat.R.id.layout_server_auth).setVisibility(View.GONE);
 
         // Retrieve some profile information to personalize our app for the user.
         Person currentUser = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
@@ -390,10 +373,7 @@ public class MainActivity extends FragmentActivity implements
         // Update the UI to reflect that the user is signed out.
         mSignInButton.setEnabled(true);
         mSignOutButton.setEnabled(false);
-        mRevokeButton.setEnabled(false);
 
-        // Show the sign-in options
-        findViewById(com.habitat.R.id.layout_server_auth).setVisibility(View.VISIBLE);
 
         mStatus.setText(com.habitat.R.string.status_signed_out);
 
