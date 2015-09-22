@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.google.android.gms.plus.sample.quickstart;
+package com.habitat;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -153,27 +153,18 @@ public class MainActivity extends FragmentActivity implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
+        setContentView(com.habitat.R.layout.main_activity);
 
-        mSignInButton = (SignInButton) findViewById(R.id.sign_in_button);
-        mSignOutButton = (Button) findViewById(R.id.sign_out_button);
-        mRevokeButton = (Button) findViewById(R.id.revoke_access_button);
-        mStatus = (TextView) findViewById(R.id.sign_in_status);
-        mCirclesListView = (ListView) findViewById(R.id.circles_list);
+        mSignInButton = (SignInButton) findViewById(com.habitat.R.id.sign_in_button);
+        mSignOutButton = (Button) findViewById(com.habitat.R.id.sign_out_button);
+        mRevokeButton = (Button) findViewById(com.habitat.R.id.revoke_access_button);
+        mStatus = (TextView) findViewById(com.habitat.R.id.sign_in_status);
 
         // Button listeners
         mSignInButton.setOnClickListener(this);
         mSignOutButton.setOnClickListener(this);
         mRevokeButton.setOnClickListener(this);
 
-        // CheckBox listeners
-        ((CheckBox) findViewById(R.id.request_auth_code_checkbox)).setOnCheckedChangeListener(this);
-        ((CheckBox) findViewById(R.id.has_token_checkbox)).setOnCheckedChangeListener(this);
-
-        mCirclesList = new ArrayList<String>();
-        mCirclesAdapter = new ArrayAdapter<String>(
-                this, R.layout.circle_member, mCirclesList);
-        mCirclesListView.setAdapter(mCirclesAdapter);
 
         if (savedInstanceState != null) {
             mSignInProgress = savedInstanceState
@@ -228,12 +219,12 @@ public class MainActivity extends FragmentActivity implements
             // We only process button clicks when GoogleApiClient is not transitioning
             // between connected and not connected.
             switch (v.getId()) {
-                case R.id.sign_in_button:
-                    mStatus.setText(R.string.status_signing_in);
+                case com.habitat.R.id.sign_in_button:
+                    mStatus.setText(com.habitat.R.string.status_signing_in);
                     mSignInProgress = STATE_SIGN_IN;
                     mGoogleApiClient.connect();
                     break;
-                case R.id.sign_out_button:
+                case com.habitat.R.id.sign_out_button:
                     // We clear the default account on sign out so that Google Play
                     // services will not return an onConnected callback without user
                     // interaction.
@@ -243,7 +234,7 @@ public class MainActivity extends FragmentActivity implements
                     }
                     onSignedOut();
                     break;
-                case R.id.revoke_access_button:
+                case com.habitat.R.id.revoke_access_button:
                     // After we revoke permissions for the user with a GoogleApiClient
                     // instance, we must discard it and create a new one.
                     Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
@@ -256,24 +247,6 @@ public class MainActivity extends FragmentActivity implements
                     mGoogleApiClient.connect();
                     break;
             }
-        }
-    }
-
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        switch (buttonView.getId()) {
-            case R.id.request_auth_code_checkbox:
-                mRequestServerAuthCode = isChecked;
-                buildGoogleApiClient();
-                if (isChecked) {
-                    findViewById(R.id.layout_has_token).setVisibility(View.VISIBLE);
-                } else {
-                    findViewById(R.id.layout_has_token).setVisibility(View.INVISIBLE);
-                }
-                break;
-            case R.id.has_token_checkbox:
-                mServerHasToken = isChecked;
-                break;
         }
     }
 
@@ -294,13 +267,13 @@ public class MainActivity extends FragmentActivity implements
         mRevokeButton.setEnabled(true);
 
         // Hide the sign-in options, they no longer apply
-        findViewById(R.id.layout_server_auth).setVisibility(View.GONE);
+        findViewById(com.habitat.R.id.layout_server_auth).setVisibility(View.GONE);
 
         // Retrieve some profile information to personalize our app for the user.
         Person currentUser = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
 
         mStatus.setText(String.format(
-                getResources().getString(R.string.signed_in_as),
+                getResources().getString(com.habitat.R.string.signed_in_as),
                 currentUser.getDisplayName()));
 
         Plus.PeopleApi.loadVisible(mGoogleApiClient, null)
@@ -410,22 +383,7 @@ public class MainActivity extends FragmentActivity implements
 
     @Override
     public void onResult(LoadPeopleResult peopleData) {
-        if (peopleData.getStatus().getStatusCode() == CommonStatusCodes.SUCCESS) {
-            mCirclesList.clear();
-            PersonBuffer personBuffer = peopleData.getPersonBuffer();
-            try {
-                int count = personBuffer.getCount();
-                for (int i = 0; i < count; i++) {
-                    mCirclesList.add(personBuffer.get(i).getDisplayName());
-                }
-            } finally {
-                personBuffer.close();
-            }
 
-            mCirclesAdapter.notifyDataSetChanged();
-        } else {
-            Log.e(TAG, "Error requesting visible circles: " + peopleData.getStatus());
-        }
     }
 
     private void onSignedOut() {
@@ -435,12 +393,10 @@ public class MainActivity extends FragmentActivity implements
         mRevokeButton.setEnabled(false);
 
         // Show the sign-in options
-        findViewById(R.id.layout_server_auth).setVisibility(View.VISIBLE);
+        findViewById(com.habitat.R.id.layout_server_auth).setVisibility(View.VISIBLE);
 
-        mStatus.setText(R.string.status_signed_out);
+        mStatus.setText(com.habitat.R.string.status_signed_out);
 
-        mCirclesList.clear();
-        mCirclesAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -462,20 +418,20 @@ public class MainActivity extends FragmentActivity implements
                         public void onCancel(DialogInterface dialog) {
                             Log.e(TAG, "Google Play services resolution cancelled");
                             mSignInProgress = STATE_DEFAULT;
-                            mStatus.setText(R.string.status_signed_out);
+                            mStatus.setText(com.habitat.R.string.status_signed_out);
                         }
                     });
         } else {
             return new AlertDialog.Builder(this)
-                    .setMessage(R.string.play_services_error)
-                    .setPositiveButton(R.string.close,
+                    .setMessage(com.habitat.R.string.play_services_error)
+                    .setPositiveButton(com.habitat.R.string.close,
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     Log.e(TAG, "Google Play services error could not be "
                                             + "resolved: " + mSignInError);
                                     mSignInProgress = STATE_DEFAULT;
-                                    mStatus.setText(R.string.status_signed_out);
+                                    mStatus.setText(com.habitat.R.string.status_signed_out);
                                 }
                             }).create();
         }
@@ -579,7 +535,7 @@ public class MainActivity extends FragmentActivity implements
                 "SERVER_BASE_URL".equals(SERVER_BASE_URL)) {
             Log.w(TAG, "WEB_CLIENT_ID or SERVER_BASE_URL configured incorrectly.");
             Dialog dialog = new AlertDialog.Builder(this)
-                    .setMessage(getString(R.string.configuration_error))
+                    .setMessage(getString(com.habitat.R.string.configuration_error))
                     .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -590,5 +546,10 @@ public class MainActivity extends FragmentActivity implements
 
             dialog.show();
         }
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
     }
 }
