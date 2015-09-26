@@ -23,6 +23,7 @@
         import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
         import com.google.android.gms.common.api.ResultCallback;
         import com.google.android.gms.common.api.Scope;
+        import com.google.android.gms.games.Games;
         import com.google.android.gms.plus.People.LoadPeopleResult;
         import com.google.android.gms.plus.Plus;
         import com.google.android.gms.plus.model.people.Person;
@@ -31,6 +32,7 @@
         import android.app.AlertDialog;
         import android.app.Dialog;
         import android.app.PendingIntent;
+        import android.content.Context;
         import android.content.DialogInterface;
         import android.content.Intent;
         import android.content.IntentSender.SendIntentException;
@@ -86,7 +88,7 @@ public class MainActivity extends FragmentActivity implements
 
     // Client ID for a web server that will receive the auth code and exchange it for a
     // refresh token if offline access is requested.
-    private static final String WEB_CLIENT_ID = "86965753276-ol57fu6rsdha0uo7oaqks8l9b7per784.apps.googleusercontent.com";
+    private static final String WEB_CLIENT_ID = "86965753276-ites09o5d16dpp8vice0ha0m83alej3j.apps.googleusercontent.com";
 
     // Base URL for your token exchange server, no trailing slash.
     private static final String SERVER_BASE_URL = "habitatapi.appspot.com";
@@ -194,6 +196,7 @@ public class MainActivity extends FragmentActivity implements
     protected void onStart() {
         super.onStart();
         mGoogleApiClient.connect();
+
     }
 
     @Override
@@ -264,6 +267,11 @@ public class MainActivity extends FragmentActivity implements
 
         // Indicate that the sign in process is complete.
         mSignInProgress = STATE_DEFAULT;
+
+        mContext = getApplicationContext();
+
+        Intent i = new Intent(this, WelcomePageActivity.class);
+        startActivity(i);
     }
 
     /* onConnectionFailed is called when our Activity could not connect to Google
