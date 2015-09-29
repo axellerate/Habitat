@@ -31,6 +31,15 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".RegisterPageOneActivity"
+            android:label="@string/title_activity_register_page_one" >
+        </activity>
+        <activity
+            android:name=".RegisterPageTwoActivity"
+            android:label="@string/title_activity_register_page_two" >
+        </activity>
     </application>
 
 </manifest>

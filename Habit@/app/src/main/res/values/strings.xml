@@ -6,7 +6,13 @@
 
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
+    <string name="prompt_retype_password">Retype Password</string>
+    <string name="first_name_prompt">First Name</string>
+    <string name="last_name_prompt">Last Name</string>
+    <string name="next_step_button">Next Step</string>
     <string name="sign_in_btn">Sign In!</string>
     <string name="register_btn">Register!</string>
+    <string name="title_activity_register_page_one">RegisterPageOneActivity</string>
+    <string name="title_activity_register_page_two">RegisterPageTwoActivity</string>
 
 </resources>
