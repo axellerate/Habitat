@@ -7,46 +7,99 @@
     tools:context="com.habitatapi.habit.RegisterPageTwoActivity"
     android:background="@mipmap/summer">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView"
-            android:background="@mipmap/caricon" />
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButton"
-            android:layout_gravity="center_horizontal"
-            android:background="@mipmap/busicon"
-            android:layout_marginTop="10dp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView2"
-            android:layout_gravity="center_horizontal"
-            android:background="@mipmap/bikewalkicon"
-            android:layout_marginTop="10dp" />
-
-        <Button
+        <GridLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/next_step_button"
-            android:id="@+id/button2"
+            android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/green_button"
-            android:radius="20dp"
-            android:textStyle="bold"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp" />
-    </LinearLayout>
+            android:id="@+id/gridLayout">
+
+            <ImageButton
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:id="@+id/carbutton"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="@mipmap/carbutton"
+                android:layout_row="2"
+                android:layout_marginTop="30dp"
+                android:layout_column="0"
+                android:onClick="onClickCarButton" />
+
+            <ImageButton
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:id="@+id/busbutton"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="@mipmap/busbutton"
+                android:layout_row="2"
+                android:layout_marginLeft="155dp"
+                android:layout_marginTop="30dp"
+                android:layout_column="0"
+                android:onClick="onClickBusButton" />
+
+            <ImageButton
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:id="@+id/bikebutton"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="@mipmap/bikebutton"
+                android:layout_row="2"
+                android:layout_marginTop="230dp"
+                android:layout_column="0"
+                android:onClick="onClickBikeButton" />
+
+            <ImageButton
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:id="@+id/personbutton"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="@mipmap/personbutton"
+                android:layout_row="2"
+                android:layout_marginLeft="155dp"
+                android:layout_marginTop="230dp"
+                android:layout_column="0"
+                android:onClick="onClickPersonButton" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Select your modes of transport"
+                android:id="@+id/textView"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="27dp"
+                android:textSize="18dp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/next_step_button"
+                android:id="@+id/button2"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="17dp"
+                android:background="@drawable/green_button"
+                android:radius="20dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_row="17"
+                android:layout_column="0"
+                android:enabled="false"/>
+
+        </GridLayout>
+
+
 </RelativeLayout>
