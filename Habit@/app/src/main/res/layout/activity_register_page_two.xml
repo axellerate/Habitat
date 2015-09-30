@@ -87,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/next_step_button"
-                android:id="@+id/button2"
+                android:id="@+id/next_button_2"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="17dp"
                 android:background="@drawable/green_button"
@@ -97,7 +97,8 @@
                 android:layout_marginRight="4dp"
                 android:layout_row="17"
                 android:layout_column="0"
-                android:enabled="false"/>
+                android:enabled="false"
+                android:onClick="onClickNext" />
 
         </GridLayout>
 

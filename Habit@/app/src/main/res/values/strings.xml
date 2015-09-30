@@ -14,5 +14,7 @@
     <string name="register_btn">Register!</string>
     <string name="title_activity_register_page_one">RegisterPageOneActivity</string>
     <string name="title_activity_register_page_two">RegisterPageTwoActivity</string>
+    <string name="title_activity_register_page_three">RegisterPageThreeActivity</string>
+    <string name="title_activity_register_page_four">RegisterPageFourActivity</string>
 
 </resources>

@@ -1,5 +1,6 @@
 package com.habitatapi.habit;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,7 +24,7 @@ public class RegisterPageTwoActivity extends AppCompatActivity {
         bus = true;
         bike = true;
         person = true;
-        myButton = (Button)findViewById(R.id.button2);
+        myButton = (Button)findViewById(R.id.next_button_2);
         myButton.setEnabled(false);
         checked = 0;
     }
@@ -141,7 +142,16 @@ public class RegisterPageTwoActivity extends AppCompatActivity {
 
     public void onClickNext(View v){
         //if car == true, redirect to car page
+        if(car == false){
+            Intent i = new Intent(this, RegisterPageThreeActivity.class);
+            startActivity(i);
 
         //else, redirect to home survey page
+        }else{
+            Intent i = new Intent(this, RegisterPageFourActivity.class);
+            startActivity(i);
+        }
+
+
     }
 }
