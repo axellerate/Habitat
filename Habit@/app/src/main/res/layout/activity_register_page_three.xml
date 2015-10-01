@@ -5,13 +5,76 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.habitatapi.habit.RegisterPageThreeActivity"
-    android:background="@mipmap/fall2">
+    android:background="@mipmap/fall2"
+    android:orientation="vertical">
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="What do you drive mostly?"
+        android:id="@+id/textView2"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Select your car"
-        android:id="@+id/textView2"
-        android:textColor="#fff" />
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:radius="20dp"
+        android:layout_marginTop="70dp"
+        android:background="#a5111111">
+
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/year_spinner"
+            android:layout_gravity="right"
+            android:background="#fff" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/manufacturers_spinner"
+            android:background="#fff"
+            android:layout_marginTop="5dp" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/models_spinner"
+            android:layout_gravity="center_horizontal"
+            android:background="#fff"
+            android:layout_marginTop="5dp" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/model_type_spinner"
+            android:layout_gravity="center_horizontal"
+            android:background="#fff"
+            android:layout_marginTop="5dp" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/next_step_button"
+        android:id="@+id/next_button_3"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/green_button"
+        android:radius="20dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:onClick="onClick" />
+
 </LinearLayout>
