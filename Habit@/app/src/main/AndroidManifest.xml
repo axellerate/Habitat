@@ -56,7 +56,8 @@
         </activity>
         <activity
             android:name=".RegisterPageFiveActivity"
-            android:label="@string/title_activity_register_page_five" >
+            android:label="@string/title_activity_register_page_five"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

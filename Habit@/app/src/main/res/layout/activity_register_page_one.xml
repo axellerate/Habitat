@@ -9,7 +9,17 @@
     android:id="@+id/register_layout_one"
     android:orientation="vertical">
 
-        <LinearLayout
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Your Account Information"
+        android:id="@+id/textView4"
+        android:textStyle="bold"
+        style="@style/ShadowStyle"
+        android:layout_gravity="center_horizontal" />
+
+    <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -18,7 +28,7 @@
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:radius="20dp"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="60dp"
             android:background="#a5111111">
 
             <AutoCompleteTextView android:id="@+id/email"
