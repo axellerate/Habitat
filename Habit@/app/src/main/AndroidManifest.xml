@@ -17,12 +17,12 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:screenOrientation="portrait">
+        android:screenOrientation="portrait"
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".LoginPage"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,22 +37,26 @@
         <activity
             android:name=".RegisterPageOneActivity"
             android:label="@string/title_activity_register_page_one"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".RegisterPageTwoActivity"
             android:label="@string/title_activity_register_page_two"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".RegisterPageThreeActivity"
             android:label="@string/title_activity_register_page_three"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".RegisterPageFourActivity"
             android:label="@string/title_activity_register_page_four"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".RegisterPageFiveActivity"
+            android:label="@string/title_activity_register_page_five" >
         </activity>
     </application>
 

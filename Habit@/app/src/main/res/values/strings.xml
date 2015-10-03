@@ -16,5 +16,6 @@
     <string name="title_activity_register_page_two">RegisterPageTwoActivity</string>
     <string name="title_activity_register_page_three">RegisterPageThreeActivity</string>
     <string name="title_activity_register_page_four">RegisterPageFourActivity</string>
+    <string name="title_activity_register_page_five">RegisterPageFiveActivity</string>
 
 </resources>

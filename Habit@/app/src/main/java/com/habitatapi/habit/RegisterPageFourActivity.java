@@ -1,17 +1,26 @@
 package com.habitatapi.habit;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RadioButton;
 
 
 public class RegisterPageFourActivity extends ActionBarActivity {
+
+    private boolean checkedButton;
+    private Button myButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_page_four);
+        checkedButton = false;
+        myButton = (Button)findViewById(R.id.button4);
     }
 
 
@@ -35,5 +44,49 @@ public class RegisterPageFourActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onClickRadio(View view){
+
+        boolean checked = ((RadioButton) view).isChecked();
+        switch(view.getId()) {
+            case R.id.radio125:
+                if (checked)
+                    myButton.setEnabled(true);
+                    break;
+            case R.id.radio300:
+                if (checked)
+                    myButton.setEnabled(true);
+                    break;
+            case R.id.radio500:
+                if (checked)
+                    myButton.setEnabled(true);
+                    break;
+            case R.id.radio750:
+                if (checked)
+                    myButton.setEnabled(true);
+                    break;
+            case R.id.radio1000:
+                if (checked)
+                    myButton.setEnabled(true);
+                    break;
+            case R.id.radio1300:
+                if (checked)
+                    myButton.setEnabled(true);
+                    break;
+            case R.id.radio1600:
+                if (checked)
+                    myButton.setEnabled(true);
+                    break;
+            case R.id.radio1601p:
+                if (checked)
+                    myButton.setEnabled(true);
+                    break;
+        }
+    }
+
+    public void onClickNext(View v){
+        Intent i = new Intent(this, RegisterPageFiveActivity.class);
+        startActivity(i);
     }
 }

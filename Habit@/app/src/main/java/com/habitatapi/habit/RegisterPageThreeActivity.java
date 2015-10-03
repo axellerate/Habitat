@@ -137,7 +137,13 @@ public class RegisterPageThreeActivity extends Activity {
         }
         else
         {
-            Intent dataIntent = new Intent(this, RegisterPageFourActivity.class);
+            Boolean motorcycle = getIntent().getExtras().getBoolean("motorcycle");
+            Intent dataIntent;
+            if(motorcycle) {
+               dataIntent = new Intent(this, RegisterPageFourActivity.class);
+            }else{
+                dataIntent = new Intent(this, RegisterPageFiveActivity.class);
+            }
             dataIntent.putExtras(getIntent());
             List<Car> v = vid.getVehicle();
             String vehicleId = "";

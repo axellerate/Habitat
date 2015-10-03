@@ -11,7 +11,7 @@ import android.widget.ImageButton;
 
 public class RegisterPageTwoActivity extends AppCompatActivity {
 
-    private Boolean car, bus, bike, person;
+    private Boolean car, bus, bike, motorcycle;
     private Button myButton;
     private int checked;
 
@@ -23,7 +23,7 @@ public class RegisterPageTwoActivity extends AppCompatActivity {
         car = true;
         bus = true;
         bike = true;
-        person = true;
+        motorcycle = true;
         myButton = (Button)findViewById(R.id.next_button_2);
         myButton.setEnabled(false);
         checked = 0;
@@ -102,7 +102,7 @@ public class RegisterPageTwoActivity extends AppCompatActivity {
     public void onClickBikeButton(View v){
         ImageButton btn = (ImageButton)findViewById(R.id.bikebutton);
 
-        if(bike == true){
+        if(bike){
             btn.setImageResource(R.mipmap.bikebuttonchecked);
             bike = false;
             checked++;
@@ -119,16 +119,16 @@ public class RegisterPageTwoActivity extends AppCompatActivity {
         }
     }
 
-    public void onClickPersonButton(View v){
-        ImageButton btn = (ImageButton)findViewById(R.id.personbutton);
+    public void onClickMotorcycleButton(View v){
+        ImageButton btn = (ImageButton)findViewById(R.id.motorcyclebutton);
 
-        if(person == true){
-            btn.setImageResource(R.mipmap.personbuttonchecked);
-            person = false;
+        if(motorcycle){
+            btn.setImageResource(R.mipmap.motorcyclebuttoncheck);
+            motorcycle = false;
             checked++;
         }else{
-            btn.setImageResource(R.mipmap.personbutton);
-            person = true;
+            btn.setImageResource(R.mipmap.motorcyclebutton);
+            motorcycle = true;
             checked--;
         }
 
@@ -141,14 +141,23 @@ public class RegisterPageTwoActivity extends AppCompatActivity {
     }
 
     public void onClickNext(View v){
-        //if car == true, redirect to car page
-        if(car == false){
+        //if car is selected, redirect to car page
+        if(!car && motorcycle) {
             Intent i = new Intent(this, RegisterPageThreeActivity.class);
+            i.putExtra("motorcycle", false);
             startActivity(i);
 
+            //if motorcycle is selected but not car, redirect to motorcycle page
+        }else if(car && !motorcycle){
+            Intent i = new Intent(this, RegisterPageFourActivity.class);
+            startActivity(i);
+        }else if(!car && !motorcycle){
+            Intent i = new Intent(this, RegisterPageThreeActivity.class);
+            i.putExtra("motorcycle", true);
+            startActivity(i);
         //else, redirect to home survey page
         }else{
-            Intent i = new Intent(this, RegisterPageFourActivity.class);
+            Intent i = new Intent(this, RegisterPageFiveActivity.class);
             startActivity(i);
         }
 
