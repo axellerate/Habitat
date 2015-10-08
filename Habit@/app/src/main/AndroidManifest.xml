@@ -59,6 +59,10 @@
             android:label="@string/title_activity_register_page_five"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".DashboardActivity"
+            android:label="@string/title_activity_dashboard" >
+        </activity>
     </application>
 
 </manifest>
